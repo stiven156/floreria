@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Save } from "lucide-react";
 import type { Product, StoreSettings } from "@/lib/types";
+import { ImagePicker } from "./ImagePicker";
 
 const EMPTY: Product = {
   id: "new",
@@ -124,22 +125,11 @@ export function ProductEditor({
             </Field>
           </div>
 
-          <Field label="Imagen (URL)">
-            <input
-              value={form.image}
-              onChange={(e) => update("image", e.target.value)}
-              className={inputCls}
-              placeholder="https://images.unsplash.com/..."
-            />
-            {form.image && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={form.image}
-                alt="preview"
-                className="mt-2 h-32 w-32 rounded-lg object-cover"
-              />
-            )}
-          </Field>
+          <ImagePicker
+            value={form.image}
+            onChange={(url) => update("image", url)}
+            label="Foto del producto"
+          />
 
           <div className="grid gap-3 sm:grid-cols-3">
             <Toggle

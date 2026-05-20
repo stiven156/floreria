@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Save } from "lucide-react";
 import type { StoreSettings } from "@/lib/types";
+import { ImagePicker } from "./ImagePicker";
 
 export function SettingsForm({
   initial,
@@ -105,13 +106,13 @@ export function SettingsForm({
             className={inputCls}
           />
         </Field>
-        <Field label="Imagen hero (URL)">
-          <input
+        <div className="sm:col-span-2">
+          <ImagePicker
             value={form.heroImage}
-            onChange={(e) => update("heroImage", e.target.value)}
-            className={inputCls}
+            onChange={(url) => update("heroImage", url)}
+            label="Imagen principal (hero)"
           />
-        </Field>
+        </div>
       </div>
 
       <label className="mt-5 flex cursor-pointer items-center justify-between rounded-xl border border-border bg-muted/40 px-4 py-3 text-sm">

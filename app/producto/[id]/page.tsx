@@ -2,6 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCatalog } from "@/lib/storage";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { formatPrice } from "@/lib/utils";
 import { PublicShell } from "@/components/PublicShell";
 import { Footer } from "@/components/Footer";

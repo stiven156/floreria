@@ -1,5 +1,9 @@
 import { getCatalog } from "@/lib/storage";
 import { Hero } from "@/components/Hero";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { CatalogGrid } from "@/components/CatalogGrid";
 import { Footer } from "@/components/Footer";
 import { PublicShell } from "@/components/PublicShell";
