@@ -1,0 +1,100 @@
+{
+  "settings": {
+    "storeName": "Floristería Bella Rosa",
+    "storeTagline": "Flores frescas con amor, entregadas a tu puerta",
+    "whatsappNumber": "573001234567",
+    "showPricesGlobal": true,
+    "currency": "COP",
+    "primaryColor": "#e11d74",
+    "heroImage": "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1600&q=80",
+    "address": "Cra. 50 #25-30, Medellín",
+    "hours": "Lun a Sáb 8:00 a.m. - 7:00 p.m.",
+    "instagram": "bellarosa.flores"
+  },
+  "products": [
+    {
+      "id": "p-001",
+      "name": "Ramo de Rosas Rojas",
+      "description": "Doce rosas rojas frescas envueltas en papel de seda. Perfecto para aniversarios.",
+      "price": 85000,
+      "image": "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800&q=80",
+      "category": "Ramos",
+      "featured": true,
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-002",
+      "name": "Bouquet Primaveral",
+      "description": "Mezcla colorida de tulipanes, lirios y margaritas. Llena tu hogar de primavera.",
+      "price": 95000,
+      "image": "https://images.unsplash.com/photo-1457089328389-e5c734af9637?w=800&q=80",
+      "category": "Ramos",
+      "featured": true,
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-003",
+      "name": "Orquídea Phalaenopsis",
+      "description": "Orquídea blanca en maceta cerámica. Decoración elegante y duradera.",
+      "price": 120000,
+      "image": "https://images.unsplash.com/photo-1567966324105-1a89e6a4b9fa?w=800&q=80",
+      "category": "Plantas",
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-004",
+      "name": "Caja de Rosas Premium",
+      "description": "Caja artesanal con 24 rosas seleccionadas y detalle dorado.",
+      "price": 180000,
+      "image": "https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=800&q=80",
+      "category": "Cajas",
+      "featured": true,
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-005",
+      "name": "Arreglo Fúnebre Blanco",
+      "description": "Corona elaborada con lirios, crisantemos y rosas blancas.",
+      "price": null,
+      "image": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=800&q=80",
+      "category": "Fúnebres",
+      "showPrice": false,
+      "available": true
+    },
+    {
+      "id": "p-006",
+      "name": "Suculenta Variada",
+      "description": "Set de 3 suculentas en macetas pequeñas. Bajo mantenimiento.",
+      "price": 35000,
+      "image": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80",
+      "category": "Plantas",
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-007",
+      "name": "Girasoles del Campo",
+      "description": "Cinco girasoles grandes con follaje. Energía y alegría en cada flor.",
+      "price": 65000,
+      "image": "https://images.unsplash.com/photo-1470509037663-253afd7f0f51?w=800&q=80",
+      "category": "Ramos",
+      "showPrice": true,
+      "available": true
+    },
+    {
+      "id": "p-008",
+      "name": "Bouquet de Novia",
+      "description": "Diseño personalizado para tu día especial. Consulta colores y flores.",
+      "price": null,
+      "image": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
+      "category": "Bodas",
+      "featured": true,
+      "showPrice": false,
+      "available": true
+    }
+  ]
+}

@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Floristería · Catálogo virtual
 
-## Getting Started
+Catálogo virtual completo para floristería, con:
 
-First, run the development server:
+- **Catálogo público** con búsqueda, categorías y destacados.
+- **Carrito** persistente en `localStorage`.
+- **Cierre por WhatsApp**: cada producto tiene "Comprar por WhatsApp" y el carrito genera un mensaje completo.
+- **Panel admin** protegido por contraseña para crear, editar, ocultar o eliminar productos.
+- **Toggle de precios** global y por producto.
+- **Ajustes** editables: nombre, slogan, número WhatsApp, dirección, horario, Instagram, imagen hero.
+- **Persistencia**: Vercel Blob (un único JSON), con fallback a un seed local.
+
+Construido con **Next.js 16 (App Router)**, **React 19**, **Tailwind v4** y **TypeScript**.
+
+## Demo local
 
 ```bash
+npm install
+cp .env.example .env.local
+# edita ADMIN_PASSWORD
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Catálogo: <http://localhost:3000>
+- Admin: <http://localhost:3000/admin>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Despliegue a Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Conecta el repo en Vercel y haz el primer deploy.
+2. En **Storage → Create**, agrega **Blob** y conéctalo al proyecto (esto inyecta `BLOB_READ_WRITE_TOKEN`).
+3. En **Settings → Environment Variables**, agrega `ADMIN_PASSWORD` con la contraseña que vas a usar.
+4. Vuelve a desplegar (Deployments → Redeploy).
 
-## Learn More
+Sin Blob conectado el sitio funciona en modo solo-lectura usando los productos del seed (`data/seed.json`).
 
-To learn more about Next.js, take a look at the following resources:
+## Personalización rápida
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Cambia los productos iniciales en `data/seed.json`.
+- Cambia los colores en `app/globals.css` (variables `--primary`, `--accent`, etc.).
+- Cambia el número WhatsApp por defecto en `data/seed.json → settings.whatsappNumber`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estructura
 
-## Deploy on Vercel
+```
+app/
+  page.tsx                # Home (hero + destacados + catálogo)
+  producto/[id]/page.tsx  # Detalle de producto
+  admin/page.tsx          # Login + dashboard
+  api/
+    products/route.ts     # GET/POST/DELETE productos
+    settings/route.ts     # GET/PUT ajustes
+    auth/route.ts         # Login admin (cookie)
+components/               # UI pública + admin/
+lib/
+  storage.ts              # Lectura/escritura del catálogo (Blob + seed)
+  whatsapp.ts             # Constructores de mensajes WhatsApp
+  auth.ts                 # Cookie de sesión admin
+  types.ts                # Tipos
+data/seed.json            # Datos iniciales
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Cómo funciona la persistencia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- En `GET /api/products` y `GET /api/settings`, si `BLOB_READ_WRITE_TOKEN` existe, leemos `catalog.json` del Blob; si no, devolvemos el seed.
+- En `POST/PUT/DELETE`, escribimos un nuevo `catalog.json` en el Blob (requiere autenticación con cookie admin).
+- Hay un caché en memoria de 5 segundos para evitar lecturas innecesarias.
+
+## Seguridad
+
+- El panel admin está protegido por una cookie `httpOnly`, `sameSite=lax` y, en producción, `secure`.
+- La contraseña se compara contra `ADMIN_PASSWORD`; cámbiala antes de salir a producción.
+
+---
+
+Hecho con cariño 🌹
