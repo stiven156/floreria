@@ -1,4 +1,4 @@
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, Flower2 } from "lucide-react";
 import type { StoreSettings } from "@/lib/types";
 
 function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -21,43 +21,66 @@ function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function Footer({ settings }: { settings: StoreSettings }) {
   return (
-    <footer id="contacto" className="border-t border-border bg-white">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
-        <div>
-          <h4 className="font-serif text-xl">{settings.storeName}</h4>
-          <p className="mt-1 text-sm text-muted-foreground">
+    <footer id="contacto" className="border-t border-border bg-background-2 paper">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
+        <div className="flex flex-col items-center text-center">
+          <span className="grid h-12 w-12 place-items-center rounded-full border border-gold-soft/50 bg-card text-primary">
+            <Flower2 className="h-5 w-5" />
+          </span>
+          <h4 className="mt-4 font-serif text-3xl font-medium">{settings.storeName}</h4>
+          <p className="mt-2 max-w-md text-sm font-light leading-relaxed text-muted-foreground">
             {settings.storeTagline}
           </p>
+          <div className="mt-5 gold-rule" />
         </div>
-        <div className="space-y-2 text-sm">
-          <p className="flex items-center gap-2 text-muted-foreground">
-            <MapPin className="h-4 w-4 text-primary" /> {settings.address}
-          </p>
-          <p className="flex items-center gap-2 text-muted-foreground">
-            <Clock className="h-4 w-4 text-primary" /> {settings.hours}
-          </p>
-          {settings.instagram && (
-            <a
-              href={`https://instagram.com/${settings.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary"
-            >
-              <InstagramIcon className="h-4 w-4 text-primary" /> @
-              {settings.instagram}
-            </a>
-          )}
-        </div>
-        <div className="text-sm text-muted-foreground">
-          <p>
-            Todos los pedidos se cierran por WhatsApp al{" "}
-            <span className="font-semibold text-foreground">
-              +{settings.whatsappNumber}
+
+        <div className="mt-12 grid gap-8 text-sm sm:grid-cols-3">
+          <div className="flex flex-col items-center gap-2 text-center sm:items-start sm:text-left">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Visítanos
             </span>
-            .
-          </p>
-          <p className="mt-3 text-xs">
-            © {new Date().getFullYear()} {settings.storeName}
+            {settings.address ? (
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary" /> {settings.address}
+              </p>
+            ) : (
+              <p className="text-muted-foreground">Pedidos a domicilio</p>
+            )}
+          </div>
+
+          <div className="flex flex-col items-center gap-2 text-center">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Horario
+            </span>
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <Clock className="h-4 w-4 text-primary" /> {settings.hours}
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-2 text-center sm:items-end sm:text-right">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Síguenos
+            </span>
+            {settings.instagram && (
+              <a
+                href={`https://instagram.com/${settings.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+              >
+                <InstagramIcon className="h-4 w-4 text-primary" /> @{settings.instagram}
+              </a>
+            )}
+            <p className="text-muted-foreground">
+              WhatsApp +{settings.whatsappNumber}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+          <p>
+            Todos los pedidos se cierran por WhatsApp. © {new Date().getFullYear()}{" "}
+            {settings.storeName}.
           </p>
         </div>
       </div>

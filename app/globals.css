@@ -1,29 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffaf7;
-  --foreground: #1a1410;
-  --primary: #e11d74;
-  --primary-foreground: #ffffff;
-  --muted: #f5ecea;
-  --muted-foreground: #6f5a52;
-  --border: #ead9d4;
-  --accent: #fcc8d8;
-  --radius: 14px;
+  /* Boutique floral · marfil cálido + rosa vino + dorado champagne */
+  --background: #faf6f1;
+  --background-2: #f3ebe2;
+  --foreground: #2c2520;
+  --primary: #a23e5c;
+  --primary-deep: #7c2d46;
+  --primary-foreground: #fffaf7;
+  --gold: #b08d57;
+  --gold-soft: #d8c19a;
+  --sage: #5c6f5d;
+  --muted: #f1e8df;
+  --muted-foreground: #837066;
+  --border: #e8dccf;
+  --accent: #f6dfe6;
+  --card: #fffdfb;
+  --radius: 16px;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-2: var(--background-2);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
   --color-primary-foreground: var(--primary-foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-sage: var(--sage);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --color-card: var(--card);
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
 }
 
 html,
@@ -32,6 +44,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .font-serif {
@@ -42,15 +55,63 @@ button {
   cursor: pointer;
 }
 
+::selection {
+  background: var(--accent);
+  color: var(--primary-deep);
+}
+
 .scroll-x-pan {
   scrollbar-width: thin;
 }
 
+/* Hairline dorado decorativo */
+.gold-rule {
+  height: 1px;
+  width: 56px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Textura sutil de papel para fondos */
+.paper {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(176, 141, 87, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+}
+
 @keyframes float {
-  0%,
-  100% { transform: translateY(0); }
+  0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
 }
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 3.5s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in {
+  animation: fadeIn 0.9s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

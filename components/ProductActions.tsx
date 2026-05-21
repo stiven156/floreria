@@ -17,23 +17,28 @@ export function ProductActions({
   const [qty, setQty] = useState(1);
 
   return (
-    <div className="mt-6 space-y-3">
-      <div className="inline-flex items-center gap-2 rounded-full border border-border bg-white p-1">
-        <button
-          onClick={() => setQty(Math.max(1, qty - 1))}
-          className="grid h-9 w-9 place-items-center rounded-full hover:bg-muted"
-          aria-label="Restar"
-        >
-          <Minus className="h-4 w-4" />
-        </button>
-        <span className="min-w-8 text-center font-semibold">{qty}</span>
-        <button
-          onClick={() => setQty(qty + 1)}
-          className="grid h-9 w-9 place-items-center rounded-full hover:bg-muted"
-          aria-label="Sumar"
-        >
-          <Plus className="h-4 w-4" />
-        </button>
+    <div className="mt-7 space-y-4">
+      <div className="flex items-center gap-3">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          Cantidad
+        </span>
+        <div className="inline-flex items-center gap-1 rounded-full border border-border bg-card p-1">
+          <button
+            onClick={() => setQty(Math.max(1, qty - 1))}
+            className="grid h-9 w-9 place-items-center rounded-full transition-colors hover:bg-accent hover:text-primary"
+            aria-label="Restar"
+          >
+            <Minus className="h-4 w-4" />
+          </button>
+          <span className="min-w-8 text-center font-semibold tabular-nums">{qty}</span>
+          <button
+            onClick={() => setQty(qty + 1)}
+            className="grid h-9 w-9 place-items-center rounded-full transition-colors hover:bg-accent hover:text-primary"
+            aria-label="Sumar"
+          >
+            <Plus className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -42,7 +47,7 @@ export function ProductActions({
             add(product.id, qty);
             setOpen(true);
           }}
-          className="flex items-center justify-center gap-2 rounded-full bg-muted px-5 py-3 text-sm font-semibold hover:bg-accent"
+          className="flex items-center justify-center gap-2 rounded-full border border-border bg-card px-5 py-3.5 text-sm font-semibold transition-all hover:border-primary hover:bg-accent hover:text-primary"
         >
           <Plus className="h-4 w-4" />
           Añadir al carrito
@@ -55,7 +60,7 @@ export function ProductActions({
           )}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-95"
+          className="flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary-deep"
         >
           <MessageCircle className="h-4 w-4" />
           Comprar por WhatsApp

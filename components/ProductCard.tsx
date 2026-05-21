@@ -20,51 +20,52 @@ export function ProductCard({
     settings.showPricesGlobal && product.showPrice !== false && product.price != null;
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-sm transition hover:shadow-md">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_2px_rgba(44,37,32,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(124,45,70,0.35)]">
       <Link
         href={`/producto/${product.id}`}
-        className="relative block aspect-square overflow-hidden"
+        className="relative block aspect-[4/5] overflow-hidden"
       >
         <Image
           src={product.image}
           alt={product.name}
           fill
-          sizes="(min-width:768px) 25vw, 50vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
+          sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <span className="absolute left-3 top-3 rounded-full border border-white/40 bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground backdrop-blur-sm">
           {product.category}
         </span>
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <h3 className="font-serif text-lg leading-tight">{product.name}</h3>
-        <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+        <h3 className="font-serif text-xl font-medium leading-tight">{product.name}</h3>
+        <p className="mt-1 line-clamp-2 text-[13px] font-light leading-relaxed text-muted-foreground">
           {product.description}
         </p>
 
         <div className="mt-3 flex items-baseline justify-between">
           {showPrice ? (
-            <span className="font-semibold text-primary">
+            <span className="font-serif text-xl font-semibold tabular-nums text-primary">
               {formatPrice(product.price, settings.currency)}
             </span>
           ) : (
-            <span className="text-sm text-muted-foreground">
+            <span className="text-[13px] font-medium uppercase tracking-wide text-gold">
               Precio a consultar
             </span>
           )}
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-2">
+        <div className="mt-4 grid grid-cols-[auto_1fr] gap-2">
           <button
             onClick={() => {
               add(product.id, 1);
               setOpen(true);
             }}
-            className="flex items-center justify-center gap-1 rounded-full bg-muted px-3 py-2 text-sm font-medium hover:bg-accent"
+            className="grid h-11 w-11 place-items-center rounded-full border border-border bg-background text-foreground transition-all hover:border-primary hover:bg-accent hover:text-primary"
+            aria-label={`Añadir ${product.name} al carrito`}
           >
             <Plus className="h-4 w-4" />
-            Carrito
           </button>
           <a
             href={whatsappUrl(
@@ -73,7 +74,7 @@ export function ProductCard({
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1 rounded-full bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:opacity-95"
+            className="flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 text-[13px] font-semibold tracking-wide text-primary-foreground transition-all hover:bg-primary-deep"
           >
             <MessageCircle className="h-4 w-4" />
             Comprar

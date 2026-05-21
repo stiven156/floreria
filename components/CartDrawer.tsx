@@ -51,11 +51,18 @@ export function CartDrawer({
         }`}
         aria-hidden={!open}
       >
-        <header className="flex items-center justify-between border-b border-border px-5 py-4">
-          <h3 className="font-serif text-xl">Tu carrito · {count}</h3>
+        <header className="flex items-center justify-between border-b border-border bg-background-2 px-5 py-5">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Tu pedido
+            </p>
+            <h3 className="font-serif text-2xl font-medium leading-tight">
+              Carrito · <span className="tabular-nums">{count}</span>
+            </h3>
+          </div>
           <button
             onClick={() => setOpen(false)}
-            className="rounded-full p-2 hover:bg-muted"
+            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-muted"
             aria-label="Cerrar carrito"
           >
             <X className="h-5 w-5" />
@@ -82,7 +89,7 @@ export function CartDrawer({
                 return (
                   <li
                     key={product.id}
-                    className="flex gap-3 rounded-2xl border border-border bg-white p-3"
+                    className="flex gap-3 rounded-2xl border border-border bg-card p-3"
                   >
                     <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl">
                       <Image
@@ -139,26 +146,28 @@ export function CartDrawer({
         </div>
 
         {lines.length > 0 && (
-          <footer className="space-y-3 border-t border-border bg-white p-4">
+          <footer className="space-y-3 border-t border-border bg-background-2 p-5">
             <textarea
               rows={2}
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Notas para la entrega (dirección, dedicatoria, fecha…)"
-              className="w-full resize-none rounded-2xl border border-border bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+              className="w-full resize-none rounded-2xl border border-border bg-card px-3 py-2.5 text-sm outline-none transition-colors focus:border-primary"
             />
 
             {allHavePrice ? (
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Total estimado</span>
-                <span className="font-serif text-xl text-primary">
+              <div className="flex items-center justify-between border-y border-border py-3">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Total estimado
+                </span>
+                <span className="font-serif text-2xl font-semibold tabular-nums text-primary">
                   {formatPrice(total, settings.currency)}
                 </span>
               </div>
             ) : (
-              <p className="text-xs text-muted-foreground">
-                Algunos productos no tienen precio publicado. Te confirmaremos
-                el total por WhatsApp.
+              <p className="rounded-xl bg-accent/60 px-3 py-2 text-xs text-primary-deep">
+                Algunos productos no tienen precio publicado. Te confirmaremos el
+                total por WhatsApp.
               </p>
             )}
 
@@ -170,7 +179,7 @@ export function CartDrawer({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setTimeout(() => setOpen(false), 200)}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow hover:opacity-95"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary-deep"
             >
               <MessageCircle className="h-4 w-4" />
               Pedir por WhatsApp
@@ -178,7 +187,7 @@ export function CartDrawer({
 
             <button
               onClick={clear}
-              className="w-full text-center text-xs text-muted-foreground hover:text-primary"
+              className="w-full text-center text-xs text-muted-foreground transition-colors hover:text-primary"
             >
               Vaciar carrito
             </button>
