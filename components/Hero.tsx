@@ -31,7 +31,7 @@ export function Hero({ settings }: { settings: StoreSettings }) {
             style={{ textShadow: "0 1px 2px rgba(0,0,0,0.4)" }}
           >
             <span className="h-1 w-1 rounded-full bg-gold-soft" />
-            Floristería Boutique · Envío local
+            Floristería · Envío local
           </p>
 
           <h1
